@@ -1,13 +1,14 @@
 require 'spec_helper'
 
 describe User do
+	
 	before { @user = User.new(name: "Eample User", email: "user@example.com")}
 
 	subject{ @user}
 
 	it { should respond_to(:name)}
 	it { should respond_to(:email)}
-
+	it { should respond_to(:password_digest)}
 
 	it { should be_valid }
 
@@ -38,7 +39,7 @@ describe User do
 
 	describe "When email format is valid" do 
 		it "should be valid" do
-			addresses = %w[user@foo.com user@foo.jp example+me@foo.]
+			addresses = %w[user@foo.com user@foo.jp example+me@foo.edu]
 			addresses.each do |valid_address|
 			 @user.email = valid_address
 			 @user.should be_valid
